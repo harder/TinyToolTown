@@ -58,8 +58,8 @@
   --color-tag-text: #ffffff;
   --color-border: #ffff00;
   --color-header-bg: #800080;
-  --font-body: 'Comic Sans MS', 'Comic Sans', cursive;
-  --font-display: 'Comic Sans MS', 'Comic Sans', cursive;
+  --font-body: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', system-ui, sans-serif;
+  --font-display: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', system-ui, sans-serif;
   --radius: 0px;
   --radius-lg: 0px;
 }
