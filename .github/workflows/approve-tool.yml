@@ -211,7 +211,18 @@ jobs:
               execFileSync('git', ['add', `public/thumbnails/`]);
             }
             execFileSync('git', ['commit', '-m', `🏠 Add ${sanitize(name)} (from issue #${issue.number})`]);
-            execFileSync('git', ['push']);
+
+            // Retry push with rebase in case another run pushed first
+            for (let attempt = 0; attempt < 5; attempt++) {
+              try {
+                execFileSync('git', ['push']);
+                break;
+              } catch (e) {
+                if (attempt === 4) throw e;
+                console.log(`⚠️ Push failed (attempt ${attempt + 1}), pulling and retrying...`);
+                execFileSync('git', ['pull', '--rebase']);
+              }
+            }
 
             // Close the issue with a comment
             await github.rest.issues.createComment({
