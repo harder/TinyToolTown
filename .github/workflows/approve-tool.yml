@@ -4,6 +4,10 @@ on:
   issues:
     types: [labeled]
 
+concurrency:
+  group: approve-tool
+  cancel-in-progress: false
+
 jobs:
   add-tool:
     if: github.event.label.name == 'approved'
