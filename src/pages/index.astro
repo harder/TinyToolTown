@@ -10,9 +10,25 @@ import { getCollection } from 'astro:content';
 const allTools = await getCollection('tools');
 
 const featuredTools = allTools.filter(t => t.data.featured);
-const latestTools = allTools
-  .sort((a, b) => new Date(b.data.date_added).getTime() - new Date(a.data.date_added).getTime())
-  .slice(0, 8);
+
+// Latest additions: recent tools, prefer ones with thumbnails, randomized
+const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+const recentTools = allTools
+  .filter(t => new Date(t.data.date_added).getTime() >= sevenDaysAgo)
+  .sort((a, b) => {
+    // Thumbnails first, then random within each group
+    const aHas = a.data.thumbnail ? 0 : 1;
+    const bHas = b.data.thumbnail ? 0 : 1;
+    return aHas - bHas || Math.random() - 0.5;
+  });
+// Fall back to all tools sorted by date if not enough recent ones
+const pool = recentTools.length >= 9 ? recentTools : allTools
+  .sort((a, b) => {
+    const aHas = a.data.thumbnail ? 0 : 1;
+    const bHas = b.data.thumbnail ? 0 : 1;
+    return aHas - bHas || new Date(b.data.date_added).getTime() - new Date(a.data.date_added).getTime();
+  });
+const latestTools = pool.slice(0, 9);
 ---
 
 <BaseLayout>
@@ -48,7 +64,7 @@ const latestTools = allTools
     <!-- Latest Tools -->
     <section class="section">
       <div class="section-header">
-        <h2 class="section-title">🆕 Latest Additions</h2>
+        <h2 class="section-title">🆕 Fresh in Town</h2>
         <a href="/tools/" class="view-all">View all →</a>
       </div>
       <div class="tool-grid">
