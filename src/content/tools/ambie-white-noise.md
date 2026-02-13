@@ -10,7 +10,7 @@ tags: ["windows", "whitenoise", "focus"]
 language: "C#, XAML"
 license: "MIT"
 date_added: "2026-02-12"
-featured: false
+featured: true
 ---
 
 I built Ambie in 2020 during covid lockdowns to help me relax an de-stress while being stuck indoors. It's evolved since to become a useful little tool to help people focus and relax. A lot of folks enjoy Ambie for being open source, functional offline, and simple to use. It also runs on Xbox consoles! While there is a premium tier, it's only for some optional content. The app is fully functional without premium, and the app is ad-free.
