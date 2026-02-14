@@ -50,6 +50,7 @@ jobs:
         timeout-minutes: 10
         env:
           GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_TOKEN }}
         run: |
           MODE_FLAG=""
           if [ "${{ github.event.inputs.mode }}" = "all" ]; then

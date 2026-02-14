@@ -234,7 +234,7 @@ try
     Console.WriteLine($"✅ Session created with {selectedModel} (ID: {session.SessionId})\n");
     Console.ResetColor();
 
-    var httpClient = new HttpClient();
+    var httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(15) };
     httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("TinyToolSummarizer/1.0");
 
     var processed = 0;
