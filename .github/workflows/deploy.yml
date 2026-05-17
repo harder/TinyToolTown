@@ -24,6 +24,10 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm install
+      - name: Refresh star counts for this build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/refresh-stars.mjs
       - run: npm run build
       - uses: actions/upload-pages-artifact@v5
         with:

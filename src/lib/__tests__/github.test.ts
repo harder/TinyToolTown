@@ -51,11 +51,30 @@ describe('getGitHubRepo', () => {
 
 describe('fetchStarCounts', () => {
   beforeEach(() => {
+    delete process.env.REFRESH_STAR_COUNTS;
     vi.mocked(existsSync).mockReturnValue(false);
     vi.mocked(readFileSync).mockReturnValue('{}');
+    vi.mocked(writeFileSync).mockClear();
   });
 
-  it('returns star count from API when cache is empty', async () => {
+  it('returns 0 for missing repos without refreshing the cache', async () => {
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+      ok: true,
+      status: 200,
+      headers: new Headers({ etag: '"abc123"' }),
+      json: async () => ({ stargazers_count: 42 }),
+    } as Response);
+
+    const result = await fetchStarCounts(['owner/repo']);
+    expect(result.get('owner/repo')).toBe(0);
+    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(vi.mocked(writeFileSync)).not.toHaveBeenCalled();
+
+    vi.restoreAllMocks();
+  });
+
+  it('returns star count from API when explicit refresh is enabled', async () => {
+    process.env.REFRESH_STAR_COUNTS = '1';
     vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
       status: 200,
@@ -65,17 +84,17 @@ describe('fetchStarCounts', () => {
 
     const result = await fetchStarCounts(['owner/repo']);
     expect(result.get('owner/repo')).toBe(42);
+    expect(vi.mocked(writeFileSync)).toHaveBeenCalled();
 
     vi.restoreAllMocks();
   });
 
-  it('returns star count from cache and sends conditional request', async () => {
+  it('returns star count from cache without sending conditional request by default', async () => {
     vi.mocked(existsSync).mockReturnValue(true);
     vi.mocked(readFileSync).mockReturnValue(
       JSON.stringify({ 'owner/repo': { stars: 99, etag: '"old-etag"' } })
     );
-    // 304 — cached value is still fresh
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: false,
       status: 304,
       headers: new Headers(),
@@ -84,11 +103,13 @@ describe('fetchStarCounts', () => {
 
     const result = await fetchStarCounts(['owner/repo']);
     expect(result.get('owner/repo')).toBe(99);
+    expect(fetchSpy).not.toHaveBeenCalled();
 
     vi.restoreAllMocks();
   });
 
   it('updates cached value when API returns 200 with new data', async () => {
+    process.env.REFRESH_STAR_COUNTS = '1';
     vi.mocked(existsSync).mockReturnValue(true);
     vi.mocked(readFileSync).mockReturnValue(
       JSON.stringify({ 'owner/repo': { stars: 50, etag: '"old"' } })
@@ -109,6 +130,7 @@ describe('fetchStarCounts', () => {
   });
 
   it('returns 0 for repos not in cache when API fails', async () => {
+    process.env.REFRESH_STAR_COUNTS = '1';
     vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: false,
       status: 403,
@@ -123,6 +145,7 @@ describe('fetchStarCounts', () => {
   });
 
   it('returns 0 for network errors', async () => {
+    process.env.REFRESH_STAR_COUNTS = '1';
     vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('Network error'));
 
     const result = await fetchStarCounts(['owner/repo']);
@@ -139,13 +162,13 @@ describe('fetchStarCounts', () => {
   it('reads old cache format (repo: number) and migrates', async () => {
     vi.mocked(existsSync).mockReturnValue(true);
     vi.mocked(readFileSync).mockReturnValue(JSON.stringify({ 'owner/repo': 42 }));
-    // 304 to keep cached value
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+    const fetchSpy = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: false, status: 304, headers: new Headers(), json: async () => ({}),
     } as Response);
 
     const result = await fetchStarCounts(['owner/repo']);
     expect(result.get('owner/repo')).toBe(42);
+    expect(fetchSpy).not.toHaveBeenCalled();
 
     vi.restoreAllMocks();
   });

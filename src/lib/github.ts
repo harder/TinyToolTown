@@ -29,6 +29,7 @@ export interface StarCacheEntry {
 export type StarCache = Record<string, StarCacheEntry>;
 
 const CACHE_PATH = join(process.cwd(), 'src', 'data', 'star-counts.json');
+const REFRESH_STAR_COUNTS_ENV = 'REFRESH_STAR_COUNTS';
 
 /** Read cached star counts from disk. Handles both old ({repo: number}) and new ({repo: {stars, etag}}) formats. */
 export function readStarCache(): StarCache {
@@ -67,12 +68,15 @@ function getAuthHeaders(): Record<string, string> {
   return headers;
 }
 
+function shouldRefreshStarCounts(): boolean {
+  const value = typeof process !== 'undefined' ? process.env[REFRESH_STAR_COUNTS_ENV] : undefined;
+  return value === '1' || value?.toLowerCase() === 'true';
+}
+
 /**
  * Load star counts for the given repos.
- * 1. Reads the local cache (with ETags).
- * 2. Makes conditional requests (If-None-Match) for ALL cached repos — 304s are free.
- * 3. Makes unconditional requests for repos not in cache.
- * 4. Updates the cache file with any changes.
+ * Normal builds read the local cache only so generated data does not dirty the repo.
+ * Set REFRESH_STAR_COUNTS=1 to fetch from GitHub and update the cache file.
  */
 export async function fetchStarCounts(repos: string[]): Promise<Map<string, number>> {
   const unique = [...new Set(repos.filter(Boolean))];
@@ -88,6 +92,13 @@ export async function fetchStarCounts(repos: string[]): Promise<Map<string, numb
     } else {
       missing.push(repo);
     }
+  }
+
+  if (!shouldRefreshStarCounts()) {
+    for (const repo of unique) {
+      if (!map.has(repo)) map.set(repo, 0);
+    }
+    return map;
   }
 
   // Conditional-fetch cached repos (304s are free against rate limit)
