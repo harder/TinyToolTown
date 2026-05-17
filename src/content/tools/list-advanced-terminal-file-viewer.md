@@ -14,10 +14,10 @@ ai_summary: "Peek into your files like a coding ninja with this terminal viewer 
 ai_features: ["🖥️ Interactive vi-style navigation with multi-file support", "🎨 Syntax highlighting for 18+ languages with smart word wrapping", "🔍 Real-time security scans for malicious Unicode and homograph attacks", "🔐 Hex dump and EBCDIC modes for deep file inspection"]
 ---
 
-This tools is inspired by a tool of the same name back my MSDOS days.
+This tiny tool was inspired by a long-lost MS-DOS utility.
 
-The tool called list has one purpose, 'list' the content of a file in a paged way with the ability to switched to EBCDIC mode (for file from the mainframe), as well as hexmode.
+Named 'list', its primary purpose is to display file contents with color coding and paging. It allows users to toggle between ASCII and EBCDIC modes (for mainframe files), as well as a hex mode for binary files.
 
-Unique features, windows resizing and 'VI' style command interface
+It also provides syntax highlighting for a wide range of formats, including C, C++, C#, Java, COBOL, Python, Bash, PowerShell, PL/I, JCL, Dockerfile, Batch, SQL, Markdown, JSON, and XML.
 
-The tools is now cross platform, windows, mac and linux (x64)
+Unique features: Full support for Windows Terminal resizing and a 'VI-style' command interface.
