@@ -4,6 +4,7 @@ tagline: "A beautiful CLI to download files, folders, or entire repositories fro
 author: "Waldek Mastykarz"
 author_github: "waldekmastykarz"
 github_url: "https://github.com/waldekmastykarz/gitload"
+thumbnail: "/thumbnails/gitload.webp"
 website_url: "https://www.npmjs.com/package/gitload-cli"
 tags: ["cli", "github", "downloader", "files", "automation"]
 language: "JavaScript"
