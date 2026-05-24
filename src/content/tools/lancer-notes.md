@@ -12,6 +12,8 @@ license: "MIT"
 theme: "minimal"
 date_added: "2026-05-18"
 featured: false
+ai_summary: "This lightweight web-based Markdown editor makes note-taking a breeze with strikethrough, tables, and super-smart syntax highlighting—perfect for anyone who loves clean, simple writing with some nifty extras!"
+ai_features: ["🔥 Lightweight and low dependencies", "⚡ Split mode editor and preview", "🎯 Regex find & replace", "🖍️ Syntax highlighting for 192 languages"]
 ---
 
 ## This is Markdown Editor that is both feature rich and lightweight. 

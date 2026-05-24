@@ -11,6 +11,8 @@ license: "MIT"
 theme: "blue"
 date_added: "2026-05-19"
 featured: false
+ai_summary: "Keep your AI coding instructions in perfect harmony by spotting drift, contradictions, and stale references with this slick local checker that makes rule alignment a breeze—no signups, no uploads, just pure peace of mind!"
+ai_features: ["🔥 Detects command drift between instruction files", "⚡ Finds contradictions and missing shared rules", "🎯 Identifies stale file references", "🛡️ Works entirely in your browser with zero data uploads"]
 ---
 
 A free browser-only utility for developers and teams maintaining multiple AI coding instruction files such as AGENTS.md, CLAUDE.md, Cursor rules, Copilot instructions, Gemini guidance, or Windsurf rules. Users paste a canonical instruction file, paste a tool-specific file, optionally paste a known file list, and get a local drift report with missing canonical rules, likely contradictions, command drift, stale file references, size/context warnings, and copyable Markdown findings. It is static, local-first, and does not require signup.

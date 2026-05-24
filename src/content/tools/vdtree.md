@@ -11,6 +11,8 @@ license: "MIT"
 theme: "ocean"
 date_added: "2026-05-11"
 featured: false
+ai_summary: "Ever lost a sneaky window on a virtual desktop? This tool maps out all your Windows Virtual Desktops and open apps with a neat, readable CLI, making off-screen chaos a thing of the past!"
+ai_features: ["🔥 Standalone executable with zero setup fuss", "⚡ Converts cryptic desktop IDs into friendly numbers", "🎯 Detects pinned apps visible on all desktops", "🗺️ Tracks exact window positions and dimensions for easy rescue"]
 ---
 
 `vdtree` is a lightweight command-line utility for Windows 10/11. It translates undocumented internal Windows COM IDs to map out your Virtual Desktops, listing every open window, its exact X/Y coordinates, size, and whether it's pinned across multiple workspaces. You can view the output as a clean table or export it as JSON.

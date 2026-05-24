@@ -10,6 +10,8 @@ language: "C#"
 license: "MIT"
 date_added: "2026-05-19"
 featured: false
+ai_summary: "Say goodbye to window chaos with a nifty CLI that snapshots and restores your app positions and virtual desktops instantly—perfect for power users craving tidy multi-workspace setups after every reboot!"
+ai_features: ["🔥 Save and restore window layouts across all Virtual Desktops", "⚡ Lightweight, self-contained native C# CLI with no extra runtimes needed", "🎯 Stores sessions as JSON for easy management and sharing", "🛠️ Supports restoring individual windows by Target ID or full profiles"]
 ---
 
 ### What does it do?

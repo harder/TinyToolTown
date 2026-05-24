@@ -11,6 +11,8 @@ language: "C#"
 license: "MIT"
 date_added: "2026-05-11"
 featured: false
+ai_summary: "Snap stunning screenshots with effortlessly stylish borders and customizable gradients that make your windows pop like never before—perfect for quick, polished visuals in a flash!"
+ai_features: ["🔥 Click-to-pick window capture", "⚡ Instant global hotkey capture", "🎨 Adjustable padding and corner radius for perfect framing", "🌈 Built-in gradient wallpapers to brighten your backdrop"]
 ---
 
 Bezl lets you create stunning screenshots of any open window in seconds. Effortlessly capture, adjust padding and corner radius, and add a gradient wallpaper backdrop for a polished look. Export your creations as PNGs or copy them directly to your clipboard. Bezl is perfect for anyone who wants professional-looking screenshots with minimal effort.

@@ -11,6 +11,8 @@ language: "Javascrip,Html"
 license: "MIT"
 date_added: "2026-05-19"
 featured: false
+ai_summary: "Get ready to flip and score with this neon-lit browser pinball arcade that brings retro vibes, wild themes, and addictive gameplay right to your screen—no quarters needed! Perfect for a quick high-score chase or a flashy gaming break."
+ai_features: ["🎨 Three vibrant theme packs", "🎯 Four unique gameplay modes with custom tables", "💡 Dynamic event-driven lighting effects", "🕹️ Pauseable cabinet menu with sound and settings controls"]
 ---
 
 Arcade-style browser pinball with a neon cabinet look, theme packs, light effects, and a pause/cabinet menu.

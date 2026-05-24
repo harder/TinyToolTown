@@ -12,6 +12,8 @@ language: "JavaScript"
 license: "MIT"
 date_added: "2026-05-19"
 featured: false
+ai_summary: "Peek into your Chrome browser's past and present tabs with a slick local web app that reads session files right in your browser—no servers, no fuss, just instant tab nostalgia and organizing magic!"
+ai_features: ["🔥 Client-side file processing for privacy", "⚡ Drag & drop your session files with ease", "🎯 Export your tabs data as JSON or CSV", "🌈 See tab details like URLs, titles, groups, and history with real-time favicons"]
 ---
 
 A fully local chrome session file viewer, great for when chrome crashes and loses your tabs but the session files are still around.

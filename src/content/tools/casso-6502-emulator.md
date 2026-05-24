@@ -12,6 +12,8 @@ license: "MIT"
 theme: "matrix"
 date_added: "2026-05-19"
 featured: false
+ai_summary: "Step back into the golden age of computing with this scrappy Apple II emulator that not only boots BASIC but brings realistic Disk II drive sounds and deep debugging magic to your modern machine—retro nostalgia never sounded so good!"
+ai_features: ["🕹️ Authentic Apple //e emulation with 80-column and Double Hi-Res color modes", "🎧 Realistic Disk II drive audio with stereo panning and mechanical sound effects", "🐞 Live Disk II event debug window for detailed controller insights", "🚀 Easy first-run setup with automatic ROM and disk image downloads"]
 ---
 
 Casso is a scrappy little Windows Apple ][,  ][ plus, and //e emulator with a AS65-compatible 6502 assembler, written from scratch in C++, mostly because I wanted to see if I could. Highlights:

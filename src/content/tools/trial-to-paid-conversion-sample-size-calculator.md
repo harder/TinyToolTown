@@ -11,6 +11,8 @@ license: "MIT"
 theme: "blue"
 date_added: "2026-05-18"
 featured: false
+ai_summary: "Crunch the numbers on your SaaS trial-to-paid conversion tests right in your browser with zero fuss—no signups, no trackers, just pure sample size magic to help you launch smarter experiments faster!"
+ai_features: ["🔥 Estimate trial sample size for conversion lift detection", "⚡ Calculate expected paid conversions and timing", "🎯 100% local browser calculations with no trackers or signups", "📊 Export results as Markdown or CSV for easy sharing"]
 ---
 
 A free browser-only utility for SaaS founders and growth teams planning trial-to-paid A/B tests or single-rate conversion estimates. It calculates required qualified trials, baseline and variant arm sizes, expected paid conversions, enrollment weeks, calendar read including trial lag, and local Markdown/CSV exports. It is static, local-first, and does not require signup.
