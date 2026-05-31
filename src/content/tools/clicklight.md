@@ -11,6 +11,8 @@ license: "MIT"
 theme: "ocean"
 date_added: "2026-05-28"
 featured: false
+ai_summary: "Make your clicks pop live on macOS with a nifty menu bar app that’s perfect for demos, tutorials, and UX reviews—no more guessing where the action happens, your audience will see every tap in style!"
+ai_features: ["🔥 Live click highlights with distinct effects for press, release, right-click, and drag", "🎯 Optional laser pointer mode with fading strokes for smooth demonstrations", "⚡ Customizable colors, sizes, and durations with quick presets in the menu bar", "📊 Built-in daily click activity charts and optional keyboard shortcut displays"]
 ---
 
 A small macOS menu bar app that highlights your clicks during live demos, screen sharing, UX reviews, and other moments where people need to follow what you are doing.

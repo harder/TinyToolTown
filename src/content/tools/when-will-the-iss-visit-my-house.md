@@ -11,6 +11,8 @@ license: "MIT"
 theme: "sunset"
 date_added: "2026-05-28"
 featured: false
+ai_summary: "Ever wondered when the International Space Station will zoom over your rooftop? This playful little tool gives you a real-time countdown and live map so you never miss the ISS saying hi to your neighborhood!"
+ai_features: ["🛰️ Live ISS tracking with real-time telemetry", "🗺️ Interactive map to pinpoint your exact location", "⏳ Next fly-by countdown so you’re always prepared", "🚀 Detailed orbit plotting with precision orbital mechanics"]
 ---
 
 I built this tiny tool because I wanted to feel that spark again — the joy of creating something small, delightful, and completely unnecessary. Three years ago I made a silly project that tracked the ISS and sent its position to a RabbitMQ queue, and that curiosity never left me. So I rebuilt it as a tiny tool: a playful little app that tells you when the ISS will fly over your roof, draws its orbit, and answers a question nobody asked but everyone secretly enjoys. It’s over‑engineered, charming, and a reminder that building tiny things keeps the magic alive.
