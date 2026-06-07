@@ -11,6 +11,8 @@ license: "MIT"
 theme: "retro"
 date_added: "2026-06-07"
 featured: false
+ai_summary: "Tired of boring spinners? This tool jazzes up your React loading states with friendly, animated narrative messages that keep users entertained and informed while they wait. It’s like having a chatty assistant for your async tasks!"
+ai_features: ["🧠 Human-like narrative loading messages", "🎭 Built-in variants and tone presets for different vibes", "🔁 Smooth sequential polling with retry/backoff", "🎬 Fun text and emoji animations for extra flair"]
 ---
 
 It shows text and emojis when one is waiting for an API request to return a response. It can be added to any API request, but the main point is to have it done for an LLM API request, so you get the "Thinking..." of your own choosing.

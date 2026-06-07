@@ -11,6 +11,8 @@ license: "MIT"
 theme: "synthwave"
 date_added: "2026-06-07"
 featured: false
+ai_summary: "Stay one step ahead of hackers with this sleek app that shows all the data breaches involving your personal info, so you can freak out a little less and secure a lot more across all your devices!"
+ai_features: ["🔥 Cross-platform support for Windows macOS iOS Android", "⚡ Real-time breach notifications", "🎯 Easy installation from multiple sources including GitHub releases", "🛡️ Comprehensive view of your exposed data across breaches"]
 ---
 
 I originally wrote this app as a UWP app and that version is still in the Microsoft Store. I have since converted it to .NET MAUI.

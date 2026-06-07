@@ -11,6 +11,8 @@ tags: ["ai", "boba", "fun"]
 language: "python"
 date_added: "2026-05-31"
 featured: false
+ai_summary: "Feeling moody or weather-worn? Just tell this cheeky AI your vibes and watch it whip up the perfect boba concoction complete with sweetness, ice, toppings, and even a ready-to-order line — bubble tea magic tailored to your moment!"
+ai_features: ["🧋 AI mood + weather boba picks", "🎨 Hand-drawn CSS boba cups", "📝 Copy-pastable custom order lines", "🚀 Tiny FastAPI + Anthropic Claude backend"]
 ---
 
 **AI BobaGenie** is a tiny AI-powered web app that recommends boba drinks based on your mood and the weather. Tell it you're stressed on a rainy day, and it'll suggest a warm brown sugar milk tea with cozy toppings — complete with sweetness level, ice level, and exactly how to order it at the shop.

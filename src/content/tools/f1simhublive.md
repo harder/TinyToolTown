@@ -12,6 +12,8 @@ license: "MIT"
 theme: "terminal"
 date_added: "2026-06-07"
 featured: false
+ai_summary: "Turn your racing wheel into a live F1 telemetry beast by streaming official broadcast data straight to your SimHub-connected screen — feel every gear shift, lap time, and speed like a pro in real time!"
+ai_features: ["🔥 Real-time F1 broadcast telemetry on your wheel screen", "⚡ Supports official F1 TV and MultiViewer live timing feeds", "🎯 Custom dash with RPM-driven shift lights and detailed race data", "🚥 Choose any driver to follow mid-race with live stats and flags"]
 ---
 
 F1SimHubLive is a SimHub plugin and custom Dash Studio dashboard that streams live Formula 1 telemetry from F1's broadcast feed or MultiViewer replay to a SimHub-connected wheel screen. Pick any driver number and see their RPM, gear, speed, throttle, brake, DRS, lap times, sector splits, tyre compound, gaps, and race-control flags rendered broadcast-style with live shift lights. The included F1RaceSim_GSIFPEV2 dashboard is tuned for 800x480 wheels and validated on GSI Formula Pro Elite V2 and Hyper P1. It's a fan tool meant to run alongside F1 TV or official live timing.

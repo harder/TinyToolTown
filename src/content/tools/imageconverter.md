@@ -12,6 +12,8 @@ license: "GPL-3.0"
 theme: "minimal"
 date_added: "2026-06-07"
 featured: false
+ai_summary: "Transform your images effortlessly with this nifty Windows tool that converts files into all the popular formats (yes, including webp and heif) while letting you batch process, strip metadata, and even invert colors like a pro!"
+ai_features: ["🖼️ Convert images to multiple formats including webp and heif", "🔄 Batch image conversion made easy", "🕵️‍♂️ Remove EXIF data for privacy", "🔍 Get file info plus checksum, hash, and VirusTotal lookup"]
 ---
 
 - Supports batch image conversions

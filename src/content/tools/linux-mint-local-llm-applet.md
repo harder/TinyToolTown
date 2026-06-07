@@ -11,6 +11,8 @@ license: "MIT"
 theme: "minimal"
 date_added: "2026-06-02"
 featured: false
+ai_summary: "Chat with your local AI right from your Linux Mint panel thanks to a sleek, lightweight applet that pops up a friendly chat window using Ollama's models — no heavy installs, just pure speedy AI fun at your fingertips!"
+ai_features: ["✨ Native Linux Mint Cinnamon panel applet for quick AI chats", "🚀 Dependency-free Python backend with local Ollama proxy", "🎨 Full browser UI with chat history and per-chat settings", "🔄 Seamless popup-to-browser chat continuation"]
 ---
 
 A small, dependency-free chat interface for an Ollama-hosted Mistral model.

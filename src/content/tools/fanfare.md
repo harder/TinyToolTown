@@ -12,6 +12,8 @@ license: "MIT"
 theme: "synthwave"
 date_added: "2026-05-31"
 featured: false
+ai_summary: "Celebrate like a pro with instant confetti, applause, and fireworks fired by hotkeys right over your screen share—perfect for spicing up webinars, classes, and presentations without missing a beat!"
+ai_features: ["🎉 Hotkey-triggered festive animations on any screen", "🖥️ Works seamlessly over Zoom, Teams, or slides", "🔀 Random reaction mode for surprise fun", "🛠️ Customizable reactions and multi-display support"]
 ---
 
 Fanfare is a tiny tray app that fires fullscreen celebratory animations — applause, confetti, fireworks, pixel hearts, gold stars, and more — on global hotkeys. I built it for the people who run webinars, virtual classrooms, and live streams, where a quick burst of visual joy after a great answer or correct response lands harder than a "thanks!" in chat.
