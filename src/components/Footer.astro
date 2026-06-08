@@ -12,6 +12,16 @@
       <a href="/submit/">Submit a Tool</a>
       <a href="/about/">About</a>
       <a href="https://github.com/shanselman/TinyToolTown" target="_blank" rel="noopener">GitHub</a>
+      <a href="/rss.xml" title="RSS feed">RSS</a>
+    </div>
+    <div class="footer-feeds">
+      <span class="footer-feeds-label">Platform feeds:</span>
+      <a href="/rss/windows.xml">Windows</a>
+      <a href="/rss/macos.xml">macOS</a>
+      <a href="/rss/linux.xml">Linux</a>
+      <a href="/rss/ios.xml">iOS</a>
+      <a href="/rss/android.xml">Android</a>
+      <a href="/rss/web.xml">Web</a>
     </div>
     <div class="footer-bottom">
       <p>Made with ✨ vibes ✨ — <a href="https://hanselman.com" target="_blank" rel="noopener">Scott Hanselman</a></p>
@@ -63,6 +73,32 @@
   }
 
   .footer-links a:hover {
+    color: var(--color-primary);
+    opacity: 1;
+  }
+
+  .footer-feeds {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  .footer-feeds-label {
+    color: var(--color-text);
+    opacity: 0.7;
+  }
+
+  .footer-feeds a {
+    color: var(--color-text);
+    opacity: 0.85;
+    transition: color 0.2s, opacity 0.2s;
+  }
+
+  .footer-feeds a:hover {
     color: var(--color-primary);
     opacity: 1;
   }
