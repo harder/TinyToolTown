@@ -12,6 +12,8 @@ language: "typescript"
 license: "MIT"
 date_added: "2026-06-14"
 featured: false
+ai_summary: "Travel back in time through your AI coding sessions and see exactly what changed in your files—no guesswork, just real diffs! Undo, investigate breakages, and keep your code story crystal clear without any cloud fuss or API keys."
+ai_features: ["🕰️ Time travel through code edits with real diffs", "🔍 Breakage detective to spot what broke since last working", "🗃️ Local shadow git repo keeps your project clean", "🧠 Optional AI narration explains changes in plain English"]
 ---
 
 What it does

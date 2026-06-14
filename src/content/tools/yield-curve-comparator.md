@@ -12,6 +12,8 @@ language: "javascript, html"
 license: "MIT"
 date_added: "2026-06-08"
 featured: false
+ai_summary: "Instantly spot the differences between two yield curves with a sleek, financial-grade interface that makes comparing rates a breeze and keeps your portfolio insights sharp and snappy!"
+ai_features: ["🔥 Instant yield curve comparison", "⚡ Polished, user-friendly financial UX", "🎯 Highlights key differences clearly", "💡 Designed for quick, accurate analysis"]
 ---
 
 Just pick any two curves—treasuries, corporates, EIOPA, or custom—and instantly see clean side-by-side charts showing spreads, inversions, steepness, and key rates. No complicated menus or steep learning curves. Hover for details, export with one click, and make smarter decisions faster. Perfect for busy investors and professionals.

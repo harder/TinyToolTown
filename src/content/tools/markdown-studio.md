@@ -13,6 +13,8 @@ license: "MIT"
 theme: "minimal"
 date_added: "2026-06-14"
 featured: false
+ai_summary: "Dive into seamless markdown magic with a 100% local, browser-based editor that previews your notes, math, and diagrams live—no server needed, just pure instant creativity right on your page!"
+ai_features: ["🔥 Real-time side-by-side markdown editing and preview", "🎨 Supports GitHub-flavored markdown with KaTeX math and Mermaid diagrams", "🚀 Fully local with zero backend, just open and start typing", "🎭 Emoji rendering and syntax-highlighted code blocks for style"]
 ---
 
 Markdown Studio — Your Local Markdown Powerhouse

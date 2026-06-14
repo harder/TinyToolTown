@@ -13,6 +13,8 @@ license: "MIT"
 theme: "terminal"
 date_added: "2026-06-10"
 featured: false
+ai_summary: "Instantly summon a smart file picker anywhere on Windows to fuzzy-find and drop absolute file paths into your text fields—perfect for coders, writers, and multitaskers who love speed and precision without leaving their keyboard!"
+ai_features: ["🔥 Global hotkey summon from any app", "⚡ Fuzzy + frecency-ranked file search", "🎯 Inline insertion of absolute file paths at the caret", "🖼️ Rich previews with thumbnails and token cost estimates"]
 ---
 
 atref puts Claude Code's @ file picker in every text field on Windows. Press Ctrl+Space over any app (terminal, browser, Obsidian, your IDE) and a fuzzy picker pops up at the caret; type a few letters (it handles CamelHumps, so `gcg` finds "Git Commit Guide", plus smart-case), hit Enter, and it drops an `@""` reference right where you were typing.

@@ -10,6 +10,8 @@ license: "0BSD"
 theme: "terminal"
 date_added: "2026-06-08"
 featured: false
+ai_summary: "Turn your codebase into a smart, local knowledge graph that crafts perfectly focused, LLM-ready context packs without any cloud fuss or network calls—ideal for turbocharging your AI-powered coding sessions offline!"
+ai_features: ["🔥 Offline deterministic indexing of repos", "⚡ Generates compact, token-budgeted Markdown context for LLMs", "🎯 Powerful symbol and relationship queries with graph visualization", "🚀 Zero network or AI API dependencies, pure local CLI"]
 ---
 
 Synapse indexes a source repository into a lightweight graph (files, symbols, projects, packages, and their relationships), persists it in [LadybugDB](https://ladybugdb.com/), and emits compact, LLM-ready Markdown context packs you can paste into Copilot, Claude, Codex, or any other agentic code partnered developer.

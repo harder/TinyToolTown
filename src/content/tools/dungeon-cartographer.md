@@ -12,6 +12,8 @@ language: "JavaScript"
 license: "MIT"
 date_added: "2026-06-10"
 featured: false
+ai_summary: "Unleash your inner dungeon master with this slick web app that lets you craft epic maps, move player tokens around, and keep your RPG sessions running smoothly—all from your browser!"
+ai_features: ["🎲 Interactive tile-based map editor", "🌿 Multiple terrain types like grass, walls, and water", "🧙 Player token management for dynamic gameplay", "🗺️ Save/load maps and game states to keep your quests alive"]
 ---
 
 A lightweight, charming dungeon‑map generator designed to make tabletop adventures fast, visual, and fun.
