@@ -2,7 +2,7 @@ name: Triage Tool Submission
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
   issue_comment:
     types: [created]
   workflow_dispatch:
@@ -341,4 +341,3 @@ jobs:
             console.log(`  Needs attention: ${needsAttention}`);
             console.log('══════════════════════════════════');
             } // end for loop
-

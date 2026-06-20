@@ -9,31 +9,46 @@
 // Keeping a single source of truth avoids the two workflows drifting apart in
 // how they read the issue body.
 
-// Extract the value of a single issue-form field by its rendered label.
-// GitHub renders each form field as `### <label>` followed by the user's value,
-// and the next field begins with another `### ` heading. The anchored,
-// multiline match captures everything up to the next heading.
-function getField(body, label) {
-  const regex = new RegExp(`^### ${label}\\s*$\\n([\\s\\S]*?)(?=^### |(?![\\s\\S]))`, 'm');
-  const match = (body || '').match(regex);
-  return match ? match[1].trim() : '';
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// Field key -> rendered issue-form label (regex-escaped where needed).
+// Field key -> rendered issue-form label.
 const FIELD_LABELS = {
   name: 'Tool Name',
   tagline: 'One-line description',
   description: 'Tell us about your tool',
   github_url: 'GitHub Repository URL',
-  website_url: 'Website or Demo URL \\(optional\\)',
-  thumbnail_url: 'Thumbnail image URL \\(optional\\)',
+  website_url: 'Website or Demo URL (optional)',
+  thumbnail_url: 'Thumbnail image URL (optional)',
   author: 'Your Name',
   author_github: 'Your GitHub Username',
-  tags: 'Tags \\(comma-separated\\)',
+  tags: 'Tags (comma-separated)',
   language: 'Primary Programming Language',
   license: 'License',
-  theme: 'Page Theme \\(optional\\)',
+  theme: 'Page Theme (optional)',
 };
+
+// Extract the value of a single issue-form field by its rendered label.
+// GitHub renders each form field as `### <label>` followed by the user's value.
+// Stop only at another known form field (or the checklist), not at any arbitrary
+// markdown heading the submitter includes inside a textarea.
+function getField(body, label) {
+  const text = body || '';
+  const startRegex = new RegExp(`^### ${escapeRegExp(label)}\\s*$\\n?`, 'm');
+  const startMatch = text.match(startRegex);
+  if (!startMatch || startMatch.index === undefined) return '';
+
+  const rest = text.slice(startMatch.index + startMatch[0].length);
+  const nextLabels = Object.values(FIELD_LABELS)
+    .filter((fieldLabel) => fieldLabel !== label)
+    .map(escapeRegExp)
+    .concat('Checklist');
+  const nextRegex = new RegExp(`^### (?:${nextLabels.join('|')})\\s*$`, 'm');
+  const nextMatch = rest.match(nextRegex);
+  const value = nextMatch && nextMatch.index !== undefined ? rest.slice(0, nextMatch.index) : rest;
+  return value.trim();
+}
 
 // Parse all known tool-submission fields from an issue body.
 function parseToolSubmission(body) {
@@ -54,7 +69,10 @@ function normalizeRepoFromUrl(url) {
   const match = cleaned.match(/github\.com\/([^/\s#?]+)\/([^/\s#?]+)/i);
   if (!match) return null;
   const owner = match[1].toLowerCase();
-  const repo = match[2].replace(/\.git$/i, '').toLowerCase();
+  const repo = match[2]
+    .replace(/\.git$/i, '')
+    .replace(/[.,;:!?]+$/g, '')
+    .toLowerCase();
   if (!owner || !repo) return null;
   return `${owner}/${repo}`;
 }

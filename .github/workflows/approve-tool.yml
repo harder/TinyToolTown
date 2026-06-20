@@ -62,14 +62,10 @@ jobs:
               }
             }
 
-            // Kick off queue processing unless one is already running/queued.
-            const running = await github.rest.actions.listWorkflowRuns({
-              owner,
-              repo,
-              workflow_id: 'batch-approve.yml',
-              status: 'in_progress',
-              per_page: 1,
-            });
+            // Kick off queue processing unless a dispatch is already queued.
+            // Do not suppress dispatch just because a batch is in progress: that
+            // run has already snapshotted its queue, and the shared
+            // tool-file-writer concurrency group will serialize the next run.
             const queued = await github.rest.actions.listWorkflowRuns({
               owner,
               repo,
@@ -78,7 +74,7 @@ jobs:
               per_page: 1,
             });
 
-            if ((running.data.total_count || 0) === 0 && (queued.data.total_count || 0) === 0) {
+            if ((queued.data.total_count || 0) === 0) {
               await github.rest.actions.createWorkflowDispatch({
                 owner,
                 repo,
@@ -87,5 +83,5 @@ jobs:
               });
               console.log('Dispatched batch-approve queue processor');
             } else {
-              console.log('Queue processor already running or queued');
+              console.log('Queue processor already queued');
             }

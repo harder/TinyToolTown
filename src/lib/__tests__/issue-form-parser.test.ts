@@ -78,7 +78,7 @@ Onboard
 
 Pablo`;
 
-    expect(getField(body, 'Website or Demo URL \\(optional\\)')).toBe('');
+    expect(getField(body, 'Website or Demo URL (optional)')).toBe('');
   });
 
   it('captures multi-line field values', () => {
@@ -88,7 +88,26 @@ Pablo`;
   });
 
   it('parses the last form field before the checklist', () => {
-    expect(getField(REAL_BODY, 'Page Theme \\(optional\\)')).toBe('terminal');
+    expect(getField(REAL_BODY, 'Page Theme (optional)')).toBe('terminal');
+  });
+
+  it('keeps markdown subheadings inside textarea values', () => {
+    const body = `### Tell us about your tool
+
+This tool has sections.
+
+### Features
+
+- One
+- Two
+
+### GitHub Repository URL
+
+https://github.com/owner/repo`;
+
+    expect(getField(body, 'Tell us about your tool')).toBe(
+      'This tool has sections.\n\n### Features\n\n- One\n- Two'
+    );
   });
 });
 
@@ -124,6 +143,7 @@ describe('normalizeRepoFromUrl', () => {
     expect(normalizeRepoFromUrl('https://github.com/owner/repo.git')).toBe(canonical);
     expect(normalizeRepoFromUrl('https://github.com/owner/repo/')).toBe(canonical);
     expect(normalizeRepoFromUrl('https://github.com/owner/repo/tree/main')).toBe(canonical);
+    expect(normalizeRepoFromUrl('https://github.com/Owner/Repo.')).toBe(canonical);
   });
 
   it('returns null for non-github or malformed URLs', () => {
