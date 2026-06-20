@@ -21,11 +21,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+      contents: read
     steps:
+      - uses: actions/checkout@v6
       - name: Triage submission
         uses: actions/github-script@v9
         with:
           script: |
+            const fs = require('fs');
+            const path = require('path');
+            const { getField: getFieldShared, normalizeRepoFromUrl } = require(`${process.env.GITHUB_WORKSPACE}/scripts/issue-form-parser.cjs`);
+
             const isManual = context.eventName === 'workflow_dispatch';
             let issuesToTriage = [];
 
@@ -84,23 +90,41 @@ jobs:
             }
 
             await ensureLabel('ready-to-approve', '0075ca', 'Passes all automated checks — ready for maintainer approval');
+            await ensureLabel('duplicate', 'cfd3d7', 'A tool for this repository is already listed');
+
+            // Map existing tool repos -> slug for duplicate detection.
+            const TOOLS_DIR = 'src/content/tools';
+            const existingRepos = new Map();
+            if (fs.existsSync(TOOLS_DIR)) {
+              for (const file of fs.readdirSync(TOOLS_DIR)) {
+                if (!file.endsWith('.md')) continue;
+                const md = fs.readFileSync(path.join(TOOLS_DIR, file), 'utf-8');
+                const urlMatch = md.match(/^github_url:\s*["']?(https?:\/\/[^\s"']+)/m);
+                const key = urlMatch ? normalizeRepoFromUrl(urlMatch[1]) : null;
+                if (key && !existingRepos.has(key)) existingRepos.set(key, file.replace(/\.md$/, ''));
+              }
+            }
 
             for (const issue of issuesToTriage) {
               const body = issue.body || '';
               const issueNum = issue.number;
 
-            // Parse form fields
-            const getField = (label) => {
-              const regex = new RegExp(`### ${label}\\s*\\n\\s*([\\s\\S]*?)(?=\\n###|\\n\\n###|$)`);
-              const match = body.match(regex);
-              return match ? match[1].trim() : '';
-            };
+            // Parse form fields (shared parser keeps triage and import in sync)
+            const getField = (label) => getFieldShared(body, label);
 
             const name = getField('Tool Name');
             const github_url = getField('GitHub Repository URL');
             const license = getField('License');
             const labelsToAdd = [];
             let needsAttention = false;
+
+            // Duplicate detection: is this repo already listed as a tool?
+            const repoKey = normalizeRepoFromUrl(github_url);
+            const isDuplicate = !!(repoKey && existingRepos.has(repoKey));
+            if (isDuplicate) {
+              console.log(`  ♻️ Duplicate of existing tool "${existingRepos.get(repoKey)}" (${repoKey})`);
+              needsAttention = true;
+            }
 
             // Ensure new-tool label is set (may be missing if submitted outside the template)
             const currentLabels = (issue.labels || []).map(l => l.name);
@@ -209,9 +233,10 @@ jobs:
             if (hasLicense) labelsToAdd.push('has-license');
             if (hasReadme) labelsToAdd.push('has-readme');
             if (hasImage) labelsToAdd.push('has-image');
+            if (isDuplicate) labelsToAdd.push('duplicate');
 
             // Remove stale triage labels that no longer apply
-            const triageLabels = ['repo-verified', 'has-license', 'has-readme', 'has-image'];
+            const triageLabels = ['repo-verified', 'has-license', 'has-readme', 'has-image', 'duplicate'];
             for (const label of triageLabels) {
               if (!labelsToAdd.includes(label)) {
                 await removeLabelIfExists(issueNum, label);
@@ -252,6 +277,9 @@ jobs:
               if (!author_github) missingFieldNames.push('GitHub username');
               if (missingFieldNames.length > 0) {
                 commentProblems.push(`⚠️ **Missing required fields** — please make sure your submission includes: ${missingFieldNames.join(', ')}.`);
+              }
+              if (isDuplicate) {
+                commentProblems.push(`♻️ **Possible duplicate** — a tool for \`${repoKey}\` is already listed on Tiny Tool Town as **${existingRepos.get(repoKey)}**. If this is a different tool, let us know; otherwise we'll close this as a duplicate.`);
               }
               if (!repoExists && github_url) {
                 commentProblems.push(`❌ **Repository not accessible** — we couldn't reach \`${github_url}\`. Please make sure it's public and the URL is correct.`);

@@ -22,13 +22,16 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Refresh all tool thumbnails
         run: |
           npm ci
           node scripts/fetch-thumbnails.mjs
+
+      - name: Regenerate social cards for updated thumbnails
+        run: npm run social
 
       - name: Commit and push changes
         run: |

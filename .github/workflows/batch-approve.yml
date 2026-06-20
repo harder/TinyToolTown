@@ -8,7 +8,7 @@ on:
         required: false
         default: "25"
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "0 * * * *"
 
 concurrency:
   group: tool-file-writer
@@ -26,7 +26,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install site dependencies
@@ -40,6 +40,7 @@ jobs:
             const path = require('path');
             const { execFileSync } = require('child_process');
             const sharp = require('sharp');
+            const { getField, normalizeRepoFromUrl } = require(`${process.env.GITHUB_WORKSPACE}/scripts/issue-form-parser.cjs`);
 
             const owner = context.repo.owner;
             const repo = context.repo.repo;
@@ -87,12 +88,6 @@ jobs:
             const ANIMATED_MAX_WIDTH = 480;
             const ANIMATED_MAX_HEIGHT = 270;
             const MAX_ANIMATED_OUTPUT_SIZE = 900 * 1024;
-
-            const getField = (body, label) => {
-              const regex = new RegExp(`^### ${label}\\s*$\\n([\\s\\S]*?)(?=^### |\\Z)`, 'm');
-              const match = (body || '').match(regex);
-              return match ? match[1].trim() : '';
-            };
 
             const sleep = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 
@@ -216,6 +211,22 @@ jobs:
             const processed = [];
             const failed = [];
 
+            // Build a map of existing tool repos -> slug for duplicate detection.
+            // A repo that already has a tool page must not be imported again.
+            const TOOLS_DIR = 'src/content/tools';
+            const existingRepos = new Map();
+            if (fs.existsSync(TOOLS_DIR)) {
+              for (const file of fs.readdirSync(TOOLS_DIR)) {
+                if (!file.endsWith('.md')) continue;
+                const md = fs.readFileSync(path.join(TOOLS_DIR, file), 'utf-8');
+                const urlMatch = md.match(/^github_url:\s*["']?(https?:\/\/[^\s"']+)/m);
+                const key = urlMatch ? normalizeRepoFromUrl(urlMatch[1]) : null;
+                if (key && !existingRepos.has(key)) {
+                  existingRepos.set(key, file.replace(/\.md$/, ''));
+                }
+              }
+            }
+
             for (const issue of issues) {
               try {
                 const body = issue.body || '';
@@ -240,6 +251,11 @@ jobs:
                 github_url = github_url.replace('://www.github.com/', '://github.com/');
                 if (!/^https:\/\/github\.com\/[a-zA-Z0-9._-]+\/[a-zA-Z0-9._-]+(\/.*)?$/.test(github_url)) {
                   throw new Error('GitHub URL is invalid');
+                }
+
+                const repoKey = normalizeRepoFromUrl(github_url);
+                if (repoKey && existingRepos.has(repoKey)) {
+                  throw new Error(`Duplicate: ${repoKey} is already listed as "${existingRepos.get(repoKey)}"`);
                 }
 
                 const baseSlug = slugify(name);
@@ -510,6 +526,7 @@ jobs:
                   name: sanitize(name),
                   slug,
                 });
+                if (repoKey) existingRepos.set(repoKey, slug);
                 console.log(`Prepared #${issue.number}: ${name}`);
               } catch (err) {
                 const reason = err.message || 'Unknown error';
@@ -521,9 +538,21 @@ jobs:
 
             let pushed = false;
             if (processed.length > 0) {
+              // Pre-generate static social cards for the imported tools so the
+              // deploy doesn't have to render them and the OG images exist on
+              // first publish.
+              try {
+                execFileSync('node', ['scripts/generate-social.mjs', ...processed.map((p) => p.slug)], { stdio: 'inherit' });
+              } catch (err) {
+                console.log(`Social card generation warning: ${err.message}`);
+              }
+
               execFileSync('git', ['add', 'src/content/tools']);
               if (fs.existsSync('public/thumbnails')) {
                 execFileSync('git', ['add', 'public/thumbnails']);
+              }
+              if (fs.existsSync('public/social')) {
+                execFileSync('git', ['add', 'public/social']);
               }
 
               let hasChanges = true;

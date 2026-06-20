@@ -6,11 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "social": "node scripts/generate-social.mjs",
     "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
-    "astro": "^5.2.0",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.4.8",
     "rehype-sanitize": "^6.0.0"
   },
   "optionalDependencies": {

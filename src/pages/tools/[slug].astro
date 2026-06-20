@@ -4,6 +4,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection, render } from 'astro:content';
 import { getGitHubRepo } from '../../lib/github';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 export async function getStaticPaths() {
   const tools = await getCollection('tools');
@@ -46,12 +48,18 @@ const langColors: Record<string, string> = {
 };
 
 const langColor = tool.data.language ? langColors[tool.data.language] || '#8b949e' : null;
+
+// Social cards are pre-generated into public/social/{slug}.png by
+// scripts/generate-social.mjs. Reference the static card when it exists,
+// otherwise fall back to the default site Open Graph image.
+const hasSocialCard = existsSync(join(process.cwd(), 'public', 'social', `${slug}.png`));
+const ogImage = hasSocialCard ? `/social/${slug}.png` : undefined;
 ---
 
 <BaseLayout
   title={metaTitle}
   description={metaDescription}
-  ogImage={`/social/${slug}.png`}
+  {...(ogImage ? { ogImage } : {})}
   {...(tool.data.theme ? { theme: tool.data.theme } : {})}
 >
   <Header />
