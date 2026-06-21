@@ -12,6 +12,8 @@ license: "Apache-2.0"
 theme: "terminal"
 date_added: "2026-06-20"
 featured: false
+ai_summary: "Tame your wild x86 Intel assembly code with this VS Code extension that magically aligns comments, normalizes tabs, and keeps your instructions looking sharp and consistent—no more messy ASM chaos!"
+ai_features: ["🔥 Enforces tab boundaries for clean indentation", "⚡ Aligns inline comments to a uniform column", "🎯 Converts instructions to consistent casing", "🛠️ Supports multiple ASM syntax files out of the box"]
 ---
 
 A lightweight, strict formatter for x86 Intel assembly code in Visual Studio Code. It normalizes indentation, aligns inline comments, and enforces consistent casing for instructions.

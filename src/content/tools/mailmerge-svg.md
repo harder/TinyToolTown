@@ -9,6 +9,8 @@ language: "HTML/JavaScript"
 license: "MIT"
 date_added: "2026-06-21"
 featured: false
+ai_summary: "Turn your CSV into laser-ready nametags or one-per-page certificates right in your browser—no installs, no fuss, just pure SVG magic that fits perfectly on your Glowforge bed or prints solo like a pro!"
+ai_features: ["🔥 Auto-detects and fills placeholders from CSV columns", "⚡ Generates tiled grids or individual full-page SVGs", "🎯 Browser-based app with zero dependencies", "🛠️ Supports Glowforge Pro bed size for perfect laser cutting"]
 ---
 
 Mail-merges a CSV onto an SVG template in one of two layouts, chosen automatically:

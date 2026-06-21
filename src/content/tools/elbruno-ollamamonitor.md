@@ -10,6 +10,8 @@ language: "C#"
 license: "MIT"
 date_added: "2026-06-21"
 featured: false
+ai_summary: "Keep your Ollama AI models in check with a tiny Windows tray app that shows real-time status, resource usage, and lets you control models without breaking a sweat—perfect for AI tinkerers and demo dynamos alike!"
+ai_features: ["🔥 Color-coded tray icons for instant Ollama status", "⚡ Real-time CPU, RAM, and GPU monitoring", "🎯 Full model lifecycle controls like start, stop, pull, and remove", "🪟 Mini always-on-top monitor window for quick resource peeks"]
 ---
 
 ElBruno.OllamaMonitor is a tiny Windows system tray companion for anyone running Ollama locally.

@@ -12,6 +12,8 @@ language: "C#"
 license: "MIT"
 date_added: "2026-06-18"
 featured: false
+ai_summary: "Tired of juggling GitHub Copilot customization files outside Visual Studio? This extension brings a slick UI to manage all your workspace instructions, prompts, agents, and hooks directly inside Visual Studio—keeping your team perfectly in sync and your workflow smooth!"
+ai_features: ["🛠️ Dockable tool window for easy access", "🌲 Tree view with file-system watcher to stay updated", "✨ Smart name-based file creation automates folder and suffix choices", "✔️ Built-in JSON schema validation and workspace-wide checks"]
 ---
 
 
