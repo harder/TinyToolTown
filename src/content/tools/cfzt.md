@@ -10,6 +10,8 @@ language: "Go"
 license: "MIT"
 date_added: "2026-06-22"
 featured: false
+ai_summary: "One command magic to instantly expose your local services through Cloudflare Zero Trust, turning complex setups into a breeze with secure, custom domains—perfect for showing off your projects safely and effortlessly!"
+ai_features: ["🚀 Auto-creates Cloudflare Tunnel and DNS records", "🔒 Sets up Zero Trust Access apps with policies", "🛠️ Installs system services for persistent tunnels", "🔄 Supports Docker auto-port detection and flexible access controls"]
 ---
 
 `zt up grafana 3000` — that's it. cfzt handles the rest: creates a Cloudflare Tunnel,

@@ -10,6 +10,8 @@ language: "C#"
 license: "MIT"
 date_added: "2026-06-21"
 featured: false
+ai_summary: "Wave goodbye to tedious image conversions and say hello to effortless batch magic with this sleek cross-platform app that turns folders of pics into perfectly formatted gems in seconds. Quality tweaks and live progress? Oh yes, it’s that smooth!"
+ai_features: ["🔥 Batch convert entire folders of images in one go", "⚡ Supports PNG, JPEG, and WebP output formats", "🎯 Adjustable image quality for perfect results", "📊 Live progress updates and completion summary"]
 ---
 
 Image Convertr is a cross-platform desktop app for converting entire folders of images without turning the task into a script. Built with Avalonia on .NET, it focuses on a practical batch workflow: choose a source folder, pick an output folder, select the target format, adjust quality, and export converted images with live progress feedback.

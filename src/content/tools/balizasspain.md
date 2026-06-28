@@ -9,6 +9,8 @@ tags: []
 language: "javascript, react, typescript, tailwind"
 date_added: "2026-06-28"
 featured: false
+ai_summary: "Track every live V16 emergency beacon in Spain with a sleek interactive map that updates every minute—perfect for keeping an eye on road incidents and staying ahead of traffic surprises!"
+ai_features: ["🔥 Real-time map with live V16 beacon data", "⚡ Official Spanish Traffic Authority feed updated every 60 seconds", "🎯 Geographic filters by region with detailed incident popups", "🌗 Light and dark mode toggle with persistent preferences"]
 ---
 
 ## Proyecto de finde / estudio: un mapa en tiempo real de balizas V16 activas en España.
