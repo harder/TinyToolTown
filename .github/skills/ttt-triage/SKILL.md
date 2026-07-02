@@ -163,12 +163,14 @@ Author page claims use the `customize-author.yml` issue form and are labeled `au
 gh issue list --repo shanselman/TinyToolTown --state open --label author-page --json number,title,body,labels,author,comments,createdAt --limit 50
 ```
 
-Also look for open issues titled `[Author] @...` that may be missing the label.
+Also look for open issues titled `[Author] @...` that may be missing the label. If an author issue is missing `author-page`, add that label (create it if necessary) so the validation workflow and future triage can find it.
 
 ### Step 2: Check Verification Labels
 
 `.github/workflows/validate-author-claim.yml` validates claims only:
 
+- Runs for issues labeled `author-page` and for issues titled `[Author] ...`.
+- Backfills the `author-page` label when it sees an author claim without the label.
 - Adds `claim-verified` when the issue author matches the requested GitHub username.
 - Adds `invalid-author-claim` when the issue author does not match the requested username.
 - Comments on missing or mismatched usernames.
