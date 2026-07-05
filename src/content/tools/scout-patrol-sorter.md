@@ -9,6 +9,8 @@ language: "JavaScript"
 license: "MIT"
 date_added: "2026-06-29"
 featured: false
+ai_summary: "This nifty browser tool whips up youth-protection-safe Scout patrols and tent pairs with zero data uploads—keeping privacy tight while making group sorting a breeze for your next adventure!"
+ai_features: ["🔥 Fully client-side sorting with zero data uploads", "⚡ Enforces patrol size, gender, age, and unit rules for safety", "🎯 Auto-creates tent pairs respecting age gaps and adult/youth separation", "🛠️ Drag-and-drop adjustments with live recalculations and export options"]
 ---
 
 Scout Patrol Sorter takes a CSV/Excel roster (or pasted rows) of names, emails, units, gender, and birth dates and instantly organizes everyone into balanced patrols of 5–8.

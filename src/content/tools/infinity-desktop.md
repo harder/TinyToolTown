@@ -10,6 +10,8 @@ language: "C#"
 license: "MIT"
 date_added: "2026-06-29"
 featured: false
+ai_summary: "Say goodbye to desktop chaos with a scrollable, infinite Windows workspace that lets you glide through all your open apps like a pro navigator on a cosmic scroll! Managing windows has never been this smooth and limitless."
+ai_features: ["🔥 Infinite scrolling desktop for endless window space", "⚡ Quickly find and switch between open windows", "🎯 Streamlined management of multiple running applications"]
 ---
 
 Infinity Desktop turns your Windows desktop into one large scrollable workspace for your open windows.
