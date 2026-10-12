@@ -12,7 +12,7 @@ language: "Python"
 license: "MIT"
 theme: "terminal"
 date_added: "2026-10-05"
-featured: false
+featured: true
 ---
 
 Point it at a text file and it scores how machine-shaped the prose is: sentence-length burstiness, contraction rate, formal-connective density, templated openers, punctuation variety, and a rolling vocabulary-repetition band, each weighted and shown with the measurement behind it. It supports --json and a --threshold flag that exits 1 for CI gates, refuses to score anything under 40 words, and runs offline because the sensible tells are plain statistics anyway. I built it after reading detector claims that never showed their math; this one prints the numbers behind every point. The README links PastAGI, where I publish this kind of eval and detector-skepticism writing.
