@@ -4,6 +4,7 @@ tagline: "`oly` turns long-running and interactive CLI workflows into persistent
 author: "Binwen"
 author_github: "albertwoo"
 github_url: "https://github.com/slaveOftime/open-relay"
+thumbnail: "/thumbnails/open-relay-oly.webp"
 website_url: "https://github.com/user-attachments/assets/bd52a474-d9c4-48a7-824b-8df328a9d5a7"
 tags: ["cli", "claude code", "copilot", "codex", "opencode"]
 language: "Rust"
