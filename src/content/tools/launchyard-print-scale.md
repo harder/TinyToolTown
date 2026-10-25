@@ -4,6 +4,7 @@ tagline: "A 100 mm PDF proof and two-axis check for prints that come out the wro
 author: "JunSince99"
 author_github: "junsince99"
 github_url: "https://github.com/JunSince99/LMMown"
+thumbnail: "/thumbnails/launchyard-print-scale.webp"
 website_url: "https://launchyard-free-tools.pink-map-7606.chatgpt.site/print-scale/?utm_source=directory"
 tags: ["printing", "pdf", "calculator", "browser", "tiny"]
 language: "JavaScript"
