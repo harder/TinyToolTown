@@ -7,16 +7,16 @@ on:
 permissions:
   issues: write
   contents: write
-
-concurrency:
-  group: tool-file-writer
-  cancel-in-progress: false
+  actions: write
 
 jobs:
   process:
     name: Write author MD file and close issue
     runs-on: ubuntu-latest
     if: github.event.label.name == 'queued-author'
+    concurrency:
+      group: tool-file-writer
+      cancel-in-progress: false
 
     steps:
       - uses: actions/checkout@v7
@@ -126,6 +126,9 @@ jobs:
               await markFailed('Git push failed after retries.');
               return;
             }
+            await github.rest.actions.createWorkflowDispatch({
+              owner, repo, workflow_id: 'deploy.yml', ref: context.ref,
+            });
 
             await github.rest.issues.createComment({
               owner, repo, issue_number: issue.number,
