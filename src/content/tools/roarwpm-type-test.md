@@ -4,6 +4,7 @@ tagline: "A modern and responsive WPM typing trainer featuring real-time speed m
 author: "Vishnu Pradeep"
 author_github: "pradeep-vishnu"
 github_url: "https://github.com/pradeep-vishnu/roarwpm-type-test"
+thumbnail: "/thumbnails/roarwpm-type-test.webp"
 website_url: "https://pradeep-vishnu.github.io/roarwpm-type-test/"
 thumbnail_source: "https://github.com/pradeep-vishnu/roarwpm-type-test/blob/main/demo.png"
 tags: ["wpm", "touch-typing", "type-learning", "words-per-minute", "typing-speed"]

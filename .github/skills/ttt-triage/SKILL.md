@@ -169,13 +169,12 @@ Also look for open issues titled `[Author] @...` that may be missing the label. 
 
 `.github/workflows/validate-author-claim.yml` validates claims only:
 
-- Runs for issues labeled `author-page` and for issues titled `[Author] ...`.
-- Backfills the `author-page` label when it sees an author claim without the label.
+- Runs for issues labeled `author-page`; add that label to author claims that are missing it.
 - Adds `claim-verified` when the issue author matches the requested GitHub username.
 - Adds `invalid-author-claim` when the issue author does not match the requested username.
 - Comments on missing or mismatched usernames.
 
-Important: this workflow **does not** create or update files under `src/content/authors/`. Author file ingress is currently handled by maintainers/agents through normal repo commits or PRs.
+This validation workflow does not write author files. After maintainer approval, add `queued-author` to trigger `.github/workflows/process-author-claim.yml`, which writes the profile, commits it to the repository, removes the queue labels, and closes the issue. Changes to an existing profile also require `author-update-approved`.
 
 ### Step 3: Evaluate Claim Readiness
 
@@ -200,6 +199,8 @@ Reject/close when:
 - The requested username does not match the issue author and no maintainer override is provided.
 
 ### Step 4: Create or Update Author Files
+
+Prefer the `queued-author` workflow for verified, ready claims rather than writing the file manually. Process author approvals one at a time and wait for each writer run to finish: the shared concurrency group retains only one pending run. Verify that the processing run succeeds and that the profile exists on `main`; a queue label alone does not prove completion. If a run is cancelled, rerun it after competing writer workflows finish. Confirm a deployment includes the new profile, dispatching `deploy.yml` if needed, because commits made with `GITHUB_TOKEN` do not trigger push workflows.
 
 Author files live in:
 
@@ -241,7 +242,13 @@ Guidelines:
 
 ### Step 5: Validate and Close
 
-For author content changes:
+For queued author claims:
+
+- Verify the processing run succeeded, the profile was committed to `main`, and the issue was closed with queue labels removed.
+- Verify the deployment triggered by the processor succeeds.
+- If processing fails, inspect the run and issue comment before retrying. Do not manually close an issue whose profile was not saved.
+
+For manual author content changes:
 
 ```powershell
 npm test
@@ -260,6 +267,6 @@ When asked to triage "everything" or "other issues":
 1. Fetch both `new-tool` and `author-page` issues.
 2. Fetch open PRs.
 3. Queue ready tools with `queued-import`.
-4. Convert ready author claims into `src/content/authors/*.md` via commit/PR.
+4. Queue ready author claims with `queued-author` and verify the processing and deployment results.
 5. Request missing author info instead of creating sparse profiles.
 6. Close or decline stale/superseded PRs only when explicitly authorized.
